@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function userview(){
         // $allData=User::all();
-        $data['allData']=User::all();
+        $data['allData']=User::where('usertype','Admin')->get();
         return view('backend.user.user_view',$data);
 
     }
@@ -25,10 +25,13 @@ class UserController extends Controller
             'name'=>'required',
         ]);
         $data=new User();
-        $data->usertype=$request->usertype;
+        $code=rand(0000,9999);
+        $data->usertype='Admin';
         $data->name=$request->name;
         $data->email=$request->email;
-        $data->password=bcrypt($request->password);
+        $data->role=$request->role;
+        $data->code=$code;
+        $data->password=bcrypt($code);
         $data->save();
         $notification=array(
             'message'=>'User Inserted Succesfully',
@@ -42,17 +45,20 @@ class UserController extends Controller
 
     }
     public function userupdate(Request $request,$id){
+        
+        
         $validatedData=$request->validate([
-            'email'=>'required|unique:users',
+            'email'=>'required',
             'name'=>'required',
         ]);
         $data= User::find($id);
-        $data->usertype=$request->usertype;
+        
+        $data->role=$request->role;
         $data->name=$request->name;
         $data->email=$request->email;
         $data->save();
         $notification=array(
-            'message'=>'User Inserted Updated',
+            'message'=>'User Updated',
             'alert-type'=>'info'
         );
         return redirect()->route('user.view')->with($notification);

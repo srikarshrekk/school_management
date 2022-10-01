@@ -56,7 +56,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="roll_no" id="roll_no"
                                                             class="form-control" value="{{$editData->roll_no}}"
-                                                            disabled>
+                                                            readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,7 +65,7 @@
                                                     <h5>Mobile No. <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="mobile" id="mobile"
-                                                            class="form-control" value="{{$editDetail->mobile}}">
+                                                            class="form-control" value="{{$editData->mobile}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +76,7 @@
                                                     <h5>Address<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="address" id="address"
-                                                            class="form-control" value="{{$editDetail->address}}">
+                                                            class="form-control" value="{{$editData->address}}">
                                                     </div>
 
                                                 </div>
@@ -86,7 +86,7 @@
                                                     <h5>Age<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="age" id="age" class="form-control"
-                                                            value="{{$editDetail->age}}">
+                                                            value="{{$editData->age}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,10 +101,10 @@
                                                         <option value="" selected="" disabled="">Select Gender
                                                         </option>
                                                         <option value="Male"
-                                                            {{($editDetail->gender=="Male"? "selected":"")}}>Male
+                                                            {{($editData->gender=="Male"? "selected":"")}}>Male
                                                         </option>
                                                         <option value="Female"
-                                                            {{($editDetail->gender=="Female"? "selected":"")}}>Female
+                                                            {{($editData->gender=="Female"? "selected":"")}}>Female
                                                         </option>
                                                     </select>
                                                 </div>
@@ -126,7 +126,7 @@
                                                     <h5>Status<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="status" id="status" class="form-control"
-                                                            value="{{$editDetail->status}} " disabled>
+                                                            value="{{$editData->status}} " disabled>
                                                     </div>
                                                 </div>
                                                 

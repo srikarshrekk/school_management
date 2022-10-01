@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 
 use App\Models\User;
-use App\Models\Detail;
+
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,18 +21,19 @@ class ProfileController extends Controller
     public function ProfileEdit(){
         $id=Auth::user()->id;
         $editData=User::find($id);
-        $editDetail=Auth::user()->detail;
+       
         // dd($editDetail);
-        return view('backend.user.edit_profile',compact('editData','editDetail'));
+        return view('backend.user.edit_profile',compact('editData'));
     }
     public function ProfileStore(Request $request){
         $data=User::find(Auth::user()->id);
+        // dd($request);
         $data->name=$request->name;
-        $data->email=$request->email;
-        $data->detail->mobile=$request->mobile;
-        $data->detail->gender=$request->gender;
-        $data->detail->address=$request->address;
-        $data->detail->age=$request->age;
+        $data->email=$request->email;        
+        $data->mobile=$request->mobile;
+        $data->gender=$request->gender;
+        $data->address=$request->address;
+        $data->age=$request->age;
         if($request->hasfile('profile_photo_path')){
             $file=$request->file('profile_photo_path');
             $file_extension =date('YmdHi').$file->getClientOriginalName();
@@ -45,7 +46,7 @@ class ProfileController extends Controller
             $data['profile_photo_path']=$filename;
             }
         $data->save();
-        $data->detail->save();
+        
         
         $notification=array(
             'message'=>'User Profile Updated Successfully',

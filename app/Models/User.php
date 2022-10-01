@@ -61,7 +61,5 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function detail(){
-        return $this->hasOne(Detail::class,'roll_no','roll_no');
-    }
+    
 }
